@@ -1,0 +1,50 @@
+pragma solidity ^0.4.0;
+
+contract Monitor&Control {
+
+	function analysis(uint DIM, uint min, uint max) public constant return (uint){
+	    uint x=5;
+	    if(DIM < min||DIM >max){
+		if(0 <= DIM <= 0.29){
+		   if(0.3 <= DIM <= 0.59){
+		      if(0.6 <= DIM <= 0.79){
+			if(0.8 <= DIM < 1){
+			x=1;		//1 is for undamaged
+			activate electrical signal for 
+			2015:0DB8:AC10:TE01:2000:0350:0067:0001			// communication for information sharing
+		        return (x);
+			}
+		      x=2;		//2 is for warning
+		      activate electrical signal for  
+		      2015:0DB8:AC10:TE01:2000:0350:0067:0001; 2015:0DB8:AC10:TE01:2000:0350:0067:0004     //information sharing and messages
+		      return (x);
+		      }
+		   x=3;			//3 is for alarming
+		   activate electrical signal for 
+		   2015:0DB8:AC10:TE01:2000:0350:0067:0001; 2015:0DB8:AC10:TE01:2000:0350:0067:0003; 2015:0DB8:AC10:TE01:2000:0350:0067:0004; 2015:0DB8:AC10:TE01:2000:0350:0067:0005  					// information shairng and control
+		   return (x);
+		   }
+		x=4;			//4 is for damaged
+		activate electrical signal for 
+		2015:0DB8:AC10:TE01:2000:0350:0067:0001; 2015:0DB8:AC10:TE01:2000:0350:0067:0003; 2015:0DB8:AC10:TE01:2000:0350:0067:0004; 		   	2015:0DB8:AC10:TE01:2000:0350:0067:0005						// information shairng and control
+		return (x);
+		}
+	    else {
+		x=0;
+		return (x);
+	    }
+	  }
+	}
+    }
+
+contract DIM_Caller{
+	function DIM_Monitor (uint DIM, uint min, uint max) public constant returns (uint code){
+	DIM_Monitor DM = new DIM_Monitor ();
+	return DM.analyze (DIM, min, max);
+	}
+}
+
+
+
+
+
